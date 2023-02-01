@@ -17,24 +17,25 @@ int main(int argc, char** argv) {
 	warehouse[1] =	new CTVSet("Samsung",E_NTSC,E_4K_UHD,100,115);
 	warehouse[2] =	new CMWaveOven("Panasonic", 23, 285, 950, 6.2f, 1500, 9.5f);
 	warehouse[3] =	new CMonitor("BenQ", 15, E_HDMI, "Ippon");
+	warehouse[4] =	new CMonitor("Vision", 21, E_HDMI, "Powercom");
 
-	CMonitor *mptr = new CMonitor("Vision", 21, E_HDMI, "Powercom");
-	mptr->add_connection(E_DVI);
-	mptr->add_connection(E_VGA);
-	mptr->set_resolution(E_8K_UHD);
-	mptr->set_refreash_rate(100);
+	CMonitor *mptr = dynamic_cast<CMonitor*>(warehouse[4]);
+	if (mptr) {
+		mptr->add_connection(E_DVI);
+		mptr->add_connection(E_VGA);
+		mptr->set_resolution(E_8K_UHD);
+		mptr->set_refreash_rate(100);
+	}
 
-	warehouse[4] = mptr;
-	
 	unsigned short arr_size = *(&warehouse + 1) - warehouse;
 
 	while (true) {
 		unsigned short choice(0);
 		std::cout << "-----------------------------------------------------------------------------------\n";
-		std::cout << "Âûáåðèòå òîâàð äëÿ ïðîñìîòðà åãî õàðàêòåðèñòèê:\n";
+		std::cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¾Ð²Ð°Ñ€ Ð´Ð»Ñ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° ÐµÐ³Ð¾ Ñ…Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸Ðº:\n";
 		for (unsigned short i =0;i< arr_size;i++)
 			warehouse[i]->ShowMenuName(i);
-		std::cout << "0 - âûõîä\n";
+		std::cout << "0 - Ð’Ñ‹Ñ…Ð¾Ð´\n";
 		std::cout << "-----------------------------------------------------------------------------------\n";
 
 		std::cin >> choice;
